@@ -1,0 +1,208 @@
+.form-box {
+  position: absolute;
+  top: 42px;
+  width: 50%;
+  height: calc(100% - 42px);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-box.login {
+  left: auto;
+  right: 0;
+  width: 50%;
+  opacity: 1;
+  z-index: 2;
+}
+
+.form-box.cadastro {
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ANIMAÇÃO QUANDO A CLASSE .ACTIVE É ADICIONADA */
+.container.active .form-box.login {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container.active .form-box.cadastro {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 2;
+}
+
+form {
+  width: 100%;
+  max-width: 430px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-title h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.form-title p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+/* INPUTS E SELECTS */
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.esqueci-link {
+  font-size: 0.75rem;
+  color: var(--primary-orange);
+  text-decoration: none;
+}
+
+input, .select-perfil {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  background: rgba(5, 5, 8, 0.8);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.select-perfil option {
+  background: var(--bg-surface);
+  color: var(--text-main);
+}
+
+input:focus, .select-perfil:focus {
+  border-color: var(--primary-orange);
+}
+
+
+
+/* botoes */
+
+
+.btn {
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: var(--primary-orange);
+  color: #fff;
+  border: none;
+  margin-top: 5px;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--primary-orange);
+  color: var(--primary-orange);
+}
+
+.btn-outline:hover {
+  background: var(--primary-orange);
+  color: #fff;
+}
+
+/* DIVISOR E LOGIN SOCIAL */
+.divisor {
+  text-align: center;
+  margin: 10px 0;
+  position: relative;
+}
+
+.divisor::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.divisor span {
+  position: relative;
+  background: #0d0e14;
+  padding: 0 10px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.social-login {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-social {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-social:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-social img {
+  width: 16px;
+  height: 16px;
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    min-height: 500px;
+  }
+  
+  .form-box { width: 100%; }
+}

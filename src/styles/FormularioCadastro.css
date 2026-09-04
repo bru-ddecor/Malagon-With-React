@@ -1,0 +1,126 @@
+.form-box {
+  position: absolute;
+  top: 42px;
+  width: 50%;
+  height: calc(100% - 42px);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-box.login {
+  right: 0;
+  opacity: 1;
+  z-index: 2;
+}
+
+.form-box.cadastro {
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ANIMAÇÃO QUANDO A CLASSE .ACTIVE É ADICIONADA */
+.container.active .form-box.login {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container.active .form-box.cadastro {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 2;
+}
+
+form {
+  width: 100%;
+  max-width: 430px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-title h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.form-title p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+/* INPUTS E SELECTS */
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.esqueci-link {
+  font-size: 0.75rem;
+  color: var(--primary-orange);
+  text-decoration: none;
+}
+
+input, .select-perfil {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(5, 5, 8, 0.8);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.select-perfil option {
+  background: var(--bg-surface);
+  color: var(--text-main);
+}
+
+input:focus, .select-perfil:focus {
+  border-color: var(--primary-orange);
+}
+
+/* BOTÕES */
+.btn {
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: var(--primary-orange);
+  color: #fff;
+  border: none;
+  margin-top: 5px;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
