@@ -11,7 +11,7 @@ function Login({ onLogin }) {
     <div className={`container${isCadastro ? ' active' : ''}`}>
       <CabecalhoMacOSCard />
       <FormularioLogin onLogin={onLogin} />
-      <FormularioCadastro />
+      <FormularioCadastro onLogin={onLogin} />
       <PainelDeslizanteTransicao
         onShowCadastro={() => setIsCadastro(true)}
         onShowLogin={() => setIsCadastro(false)}

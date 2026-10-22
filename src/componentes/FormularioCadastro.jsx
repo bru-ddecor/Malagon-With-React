@@ -1,10 +1,24 @@
+import { useState } from 'react';
+import { authRequest } from '../api.js';
 import '../styles/FormularioCadastro.css';
 
-function FormularioCadastro() {
+function FormularioCadastro({ onLogin }) {
+    const [error, setError] = useState('');
+    const [busy, setBusy] = useState(false);
+    async function submit(event) {
+        event.preventDefault();
+        const fields = new FormData(event.currentTarget);
+        setError(''); setBusy(true);
+        try {
+            const { user } = await authRequest('register', Object.fromEntries(fields));
+            onLogin(user);
+        } catch (error) { setError(error.message); }
+        finally { setBusy(false); }
+    }
     return (
         <>
         <div className="form-box cadastro">
-      <form id="form-cadastro" action="#">
+      <form id="form-cadastro" onSubmit={submit}>
         <div className="form-title">
           <h2>Criar Conta Global</h2>
           <p>Comece a planejar seu intercâmbio gratuitamente.</p>
@@ -12,17 +26,17 @@ function FormularioCadastro() {
 
         <div className="input-box">
           <label>Nome Completo</label>
-          <input type="text" placeholder="Seu nome" required />
+          <input name="name" autoComplete="name" minLength={2} maxLength={100} type="text" placeholder="Seu nome" required />
         </div>
 
         <div className="input-box">
           <label>E-mail</label>
-          <input type="email" placeholder="seuemail@exemplo.com" required />
+          <input name="email" autoComplete="email" maxLength={254} type="email" placeholder="seuemail@exemplo.com" required />
         </div>
 
         <div className="input-box">
           <label>Perfil Acadêmico</label>
-          <select required className="select-perfil" defaultValue="">
+          <select name="profile" required className="select-perfil" defaultValue="">
             <option value="" disabled>Selecione seu objetivo...</option>
             <option value="graduacao">Graduação no Exterior</option>
             <option value="pos">Pós / Mestrado / Doutorado</option>
@@ -33,10 +47,12 @@ function FormularioCadastro() {
 
         <div className="input-box">
           <label>Senha</label>
-          <input type="password" placeholder="Crie uma senha forte" required />
+          <input name="password" autoComplete="new-password" minLength={8} maxLength={128} type="password" placeholder="Crie uma senha forte" required />
         </div>
 
-        <button type="submit" className="btn btn-primary">Criar Minha Conta →</button>
+        {error && <p role="alert" className="auth-error">{error}</p>}
+        <small>Use uma senha com pelo menos 8 caracteres.</small>
+        <button type="submit" className="btn btn-primary" disabled={busy}>{busy ? 'Criando conta…' : 'Criar Minha Conta →'}</button>
       </form>
     </div>
 

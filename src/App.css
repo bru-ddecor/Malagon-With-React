@@ -182,3 +182,7 @@
     border-right-color: var(--border);
   }
 }
+
+.auth-error { color: #ffb4b4; font-size: .85rem; }
+button:disabled { opacity: .6; cursor: wait; }
+.account-bar { position: absolute; top: 12px; right: 24px; z-index: 10; display: flex; align-items: center; gap: 16px; }
